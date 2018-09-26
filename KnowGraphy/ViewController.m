@@ -1,29 +1,46 @@
-//
-//  ViewController.m
-//  KnowGraphy
-//
-//  Created by 陈前进 on 2017/12/7.
-//  Copyright © 2017年 chqjboy. All rights reserved.
-//
 
 #import "ViewController.h"
-
+#import "DrawRectCtrler.h"
+#import "CIFilterSortsCtrler.h"
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
+    self.title = @"图像处理";
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [self.btnBack setHidden:YES];
 }
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
+-(NSArray*)dictionarysOfAnalyCell
+{
+    NSArray* cells = @[
+                       @{
+                           @"name":@"绘图(DrawRect)",
+                           @"data":NSStringFromClass([DrawRectCtrler class])
+                           },
+                       @{
+                           @"name":@"滤镜分类(CIFilterSorts)",
+                           @"data":NSStringFromClass([CIFilterSortsCtrler class])
+                           },
+                       ];
+    return cells;
+}
+-(void)selectCellWithParam:(VPSimpleTableViewCell *)param
+{
+    NSString* clsName = param.data;
+    
+    NavigationCtrler* ctrler = [[NSClassFromString(clsName) alloc]init];
+    ctrler.title = param.name;
+    [self.navigationController pushViewController:ctrler animated:YES];
+}
 
 @end

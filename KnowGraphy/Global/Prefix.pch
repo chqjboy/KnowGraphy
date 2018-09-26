@@ -1,0 +1,6 @@
+
+#ifndef Prefix_pch
+#define Prefix_pch
+#import "Global.h"
+#import "MacroDefine.h"
+#endif /* Prefix_pch */
